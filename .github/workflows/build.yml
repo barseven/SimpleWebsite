@@ -23,6 +23,6 @@ jobs:
       run: |
         mkdir "$GITHUB_WORKSPACE/artifacts"
     - name: Publish Project
-      run: dotnet publish SimpleWebsite/SimpleWebsite/SimpleWebsite.csproj --configuration Release --no-restore --output "$GITHUB_WORKSPACE/artifacts"
+      run: dotnet publish SimpleWebsite/SimpleWebsite.csproj --configuration Release --no-restore --output "$GITHUB_WORKSPACE/artifacts"
     - name: Show Artifacts
       run: echo $(ls $GITHUB_WORKSPACE/artifacts) 

@@ -8,6 +8,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Say Hello
-      run: echo "Does this work?"
+    - uses: actions/checkout@v3
+    - name: Set Version
+      run: echo "PACKAGE_VERSION=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+    - name: Setup DotNet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Create Artifacts Folder
+      run: |
+        mkdir "$GITHUB_WORKSPACE/artifacts"
+    - name: Publish Project
+      run: dotnet publish SimpleWebsite/SimpleWebsite/SimpleWebsite.csproj --configuration Release --no-restore --output "$GITHUB_WORKSPACE/artifacts"
+    - name: Show Artifacts
+      run: echo $(ls $GITHUB_WORKSPACE/artifacts) 

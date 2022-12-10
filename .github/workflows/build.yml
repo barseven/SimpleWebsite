@@ -1,0 +1,5 @@
+name: MyBuild
+
+on:
+  workflow_dispatch:
+    

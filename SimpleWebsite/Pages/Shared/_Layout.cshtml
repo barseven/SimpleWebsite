@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - SimpleWebsite</title>
+    <link rel="stylesheet" href="~/lib/mvpcss/mvp.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+</head>
+<body>
+<header>
+    
+    <nav>
+        <h1>Simple Website</h1>
+    </nav>
+</header>
+<main>
+    @RenderBody()
+</main>
+<footer>
+    <hr/>
+    <p>
+        &copy; 2022 - SimpleWebsite
+    </p>
+</footer>
+
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

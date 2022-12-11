@@ -33,3 +33,10 @@ jobs:
         octo pack --id="SimpleWebsite" --format="Zip" --version="$PACKAGE_VERSION" --basePath="$GITHUB_WORKSPACE/artifacts" --outFolder="$GITHUB_WORKSPACE/artifacts"
     - name: Show Artifacts
       run: echo $(ls -l $GITHUB_WORKSPACE/artifacts)
+    - name: Push Package to Octo
+      uses: OctopusDeploy/push-package-action@v1
+      with:
+        api_key: ${{ secrets.OCTOPUSSERVERAPIKEY }}
+        server: ${{ secrets.OCTOPUSSERVERURL }}
+        space: ${{ secrets.OCTOPUSSERVER_SPACE }}
+        packages: "artifacts/SimpleWebsite.${{ env.PACKAGE_VERSION }}.zip"
